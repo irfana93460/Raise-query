@@ -4,27 +4,27 @@ The project includes a Raise Query feature that allows users to submit questions
 
 ## Features;
 
-Browse and search FAQs
-Raise and submit new queries
-User-friendly interface
-Query management system
-Admin dashboard for FAQ and query handling
-Database integration for data storage
-Responsive design for multiple devices
+Browse and search FAQs, 
+Raise and submit new queries, 
+User-friendly interface, 
+Query management system, 
+Admin dashboard for FAQ and query handling, 
+Database integration for data storage, 
+Responsive design for multiple devices.
 
 ## Benefits;
 
-Improves user support experience
-Reduces repetitive inquiries
-Provides a structured knowledge base
-Enables continuous FAQ updates based on user queries
+Improves user support experience, 
+Reduces repetitive inquiries, 
+Provides a structured knowledge base, 
+Enables continuous FAQ updates based on user queries.
 
 ## Future Enhancements;
 
-User authentication and profiles
-Query status tracking
-Email notifications
-AI-powered answer suggestions
-Advanced search and filtering options
+User authentication and profiles, 
+Query status tracking, 
+Email notifications, 
+AI-powered answer suggestions, 
+Advanced search and filtering options.
 
 This project demonstrates practical implementation of frontend, backend, and database technologies to create an efficient query management and FAQ system.
