@@ -1,0 +1,176 @@
+<?php
+$conn = mysqli_connect("localhost", "root", "", "faq_db");
+
+if (!$conn) {
+    die("Database Connection Failed");
+}
+
+if(isset($_POST['submit']))
+{
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $query = $_POST['query'];
+
+    $sql = "INSERT INTO queries(name,email,query_text)
+            VALUES('$name','$email','$query')";
+
+    mysqli_query($conn,$sql);
+    echo "<script>alert('Query Submitted Successfully');</script>";
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FAQ Project - Raise Query</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+            margin:0;
+            padding:20px;
+        }
+
+        .container{
+            max-width:900px;
+            margin:auto;
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            text-align:center;
+            color:#333;
+        }
+
+        .faq{
+            margin-bottom:15px;
+            padding:15px;
+            background:#eef5ff;
+            border-left:5px solid #007bff;
+        }
+
+        .faq h3{
+            margin:0;
+            color:#007bff;
+        }
+
+        .faq p{
+            margin-top:10px;
+        }
+
+        form{
+            margin-top:30px;
+        }
+
+        input, textarea{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            margin-bottom:15px;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+        button{
+            background:#28a745;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#218838;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:30px;
+        }
+
+        th, td{
+            border:1px solid #ddd;
+            padding:10px;
+        }
+
+        th{
+            background:#007bff;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>FAQ Management System</h1>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq">
+        <h3>How do I register?</h3>
+        <p>Click on the Register button and fill in the required details.</p>
+    </div>
+
+    <div class="faq">
+        <h3>How do I reset my password?</h3>
+        <p>Use the Forgot Password option available on the login page.</p>
+    </div>
+
+    <div class="faq">
+        <h3>How can I contact support?</h3>
+        <p>You can submit your issue using the Raise Query form below.</p>
+    </div>
+
+    <h2>Raise a Query</h2>
+
+    <form method="POST">
+        <label>Name</label>
+        <input type="text" name="name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Your Query</label>
+        <textarea name="query" rows="5" required></textarea>
+
+        <button type="submit" name="submit">Submit Query</button>
+    </form>
+
+    <h2>Submitted Queries</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Query</th>
+            <th>Date</th>
+        </tr>
+
+        <?php
+        $result = mysqli_query($conn,"SELECT * FROM queries ORDER BY id DESC");
+
+        while($row = mysqli_fetch_assoc($result))
+        {
+            echo "<tr>
+                    <td>".$row['id']."</td>
+                    <td>".$row['name']."</td>
+                    <td>".$row['email']."</td>
+                    <td>".$row['query_text']."</td>
+                    <td>".$row['created_at']."</td>
+                  </tr>";
+        }
+        ?>
+    </table>
+
+</div>
+
+</body>
+</html>
